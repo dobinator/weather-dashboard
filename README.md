@@ -1,6 +1,5 @@
 # weather-dashboard
-
-  server side API
+Server side API
 
 
 AS A traveler

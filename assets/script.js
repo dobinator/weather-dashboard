@@ -1,6 +1,8 @@
+
+//api key for app to work
 var api_key = "452c3222c520d5a1ef11ff57192c158b"; 
 
-
+//calling the function of getWeather to a specific city with lat/lon for uv index 
 function getWeather(city) {
 var currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 fetch(currentWeatherUrl)

@@ -10,5 +10,8 @@ header{
     padding: 40px;
     color: white; 
     font-size: 18px;
-    text-align: center, bottom;
+    text-align: center;
+}
+main{
+    padding: 20px;
 }
