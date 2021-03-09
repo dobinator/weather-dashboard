@@ -15,7 +15,7 @@ fetch(currentWeatherUrl)
     .then((data) => data.json())
     .then(function (oneCallData) {
         // oneCalldata has all the information that we need
-    }):
+    }); 
 
   });
 }
