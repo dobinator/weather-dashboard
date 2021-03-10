@@ -3,6 +3,11 @@
 var api_key = "452c3222c520d5a1ef11ff57192c158b"; 
 var btns = document.querySelector("#buttons");
 var form = document.querySelector("#weather-form");
+var lat = weather.coord.lat;
+var lon= weather.coord.lon;
+var cities= localStorage.getItem("cities")
+
+
 // event Listener for our form submit
 form.addEventListener("submit", function (e){
  var city = document.querySelector("#city-input").value; 
@@ -21,9 +26,7 @@ btns.addEventListener("click", function(e){
 
   var city= e.target.textContent;
   getWeather(city); 
-})
-
-
+});
 
 
 //function takes city name and retrieves weather data for that city
@@ -36,14 +39,15 @@ function getWeather(city){
 fetch(currentWeatherUrl)
 .then((data)=>data.json())
 .then(function (weather){
-    console.log(weather);
-
 if(weather.cod === "404") {
     alert("City not found");
     return;
 }
-var lat = weather.coord.lat;
-var lon= weather.coord.lon;
+if (!cities.includes(weather.name)){
+    cities.push(weather.name);
+    localStorage.setItem("cities,", JSON.stringify(cities));
+    renderCityBtns(); 
+}
 
 //api call for the latitude and longitude
 var onecallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${api_key}`;
