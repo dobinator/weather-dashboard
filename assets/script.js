@@ -1,9 +1,11 @@
 
 //api key for app to work
 var api_key = "452c3222c520d5a1ef11ff57192c158b"; 
+//activating HTML in JS
 var btns = document.querySelector("#buttons");
 var form = document.querySelector("#weather-form");
 var cities= localStorage.getItem("cities")
+
 
 if (cities){
     cities = JSON.parse(cities)
@@ -21,12 +23,9 @@ function renderCityBtns(){
     })
 }
 
-
-
-
 // event Listener for our form submit
-
 form.addEventListener("submit", function (e){
+
     e.preventDefault();
     var city = document.querySelector("#city-input").value; 
     
@@ -34,7 +33,7 @@ form.addEventListener("submit", function (e){
 }); 
 
 //Listen to our users click on the button, call the function of the event
-btns.addEventListener("click", function(e){
+ btns.addEventListener("click", function(e){
     //stopping the search if the button has already populated the city
     e.preventDefault();
     
@@ -50,9 +49,6 @@ function getWeather(city){
     
     var currentWeatherUrl= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
     
-    var lat = weather.coord.lat;
-    var lon= weather.coord.lon;
-    
     //send fetch request to get latitude and longitude
     fetch(currentWeatherUrl)
     .then((data)=>data.json())
@@ -61,14 +57,18 @@ function getWeather(city){
             alert("City not found");
             return;
         }
-if (!cities.includes(weather.name)){
-    cities.push(weather.name);
-    localStorage.setItem("cities,", JSON.stringify(cities));
-    renderCityBtns(); 
-}
+        if (!cities.includes(weather.name)){
+            cities.push(weather.name);
+            localStorage.setItem("cities,", JSON.stringify(cities));
+            renderCityBtns(); 
+        }
+        var lat = weather.coord.lat;
+        var lon= weather.coord.lon;
+        
 
 //api call for the latitude and longitude
 var onecallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${api_key}`;
+
 fetch(onecallURL)
 .then((data) => data.json()
 .then(function (onecallData){
