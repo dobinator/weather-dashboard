@@ -2,15 +2,23 @@
 var api_key = "452c3222c520d5a1ef11ff57192c158b"; 
 //activating HTML in JS
 var form = document.querySelector("#weather-form");
-var cities= localStorage.getItem("#searchBtn");
+var inputCity= localStorage.getItem("#inputCity");
+var searchBtns = document.getElementById("searchBtn")
 
 
-if (cities){
-    cities = JSON.parse(cities)
+if (inputCity){
+    inputCity = JSON.parse(inputCity)
 }else {
-    cities = []; 
+    inputCity = []; 
+}
+//changing the kelvin to Fahrenheit for the weather load the api . 
+
+function kelvinToFahrenheit(temp){
+ return (temp - 273.15) * 1.8 +32;
+
 }
 
+//calling the function to render the city buttons
 function renderCityBtns(){
     cities.forEach (function(city){
         //build a btn
@@ -22,7 +30,7 @@ function renderCityBtns(){
 }
 
 // event Listener for our form submit
-form.addEventListener("submit", function (e){
+ form.addEventListener("submit", function (e){
 
     e.preventDefault();
     var city = document.querySelector("#city-input").value; 
@@ -31,7 +39,7 @@ form.addEventListener("submit", function (e){
 }); 
 
 //Listen to our users click on the button, call the function of the event
- btns.addEventListener("click", function(e){
+ searchBtns.addEventListener("click", function(e){
     //stopping the search if the button has already populated the city
     e.preventDefault();
     
@@ -51,10 +59,11 @@ function getWeather(city){
     fetch(currentWeatherUrl)
     .then((data)=>data.json())
     .then(function (weather){
+        //alert created if the user enters a city not found
         if(weather.cod === "404") {
             alert("City not found");
             return;
-        }
+        }// save the user input for name of city 
         if (!cities.includes(weather.name)){
             cities.push(weather.name);
             localStorage.setItem("currentCity,", JSON.stringify(cities));
