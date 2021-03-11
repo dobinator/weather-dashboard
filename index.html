@@ -5,19 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles.css">
+
     <title>Weather Dashboard app </title>
 </head>
 <body>
-   <header class="header">
+
+    <!---Main heading-->
+    <div class= "container">
+    <div class="header">
        <h1>Weather Dashboard</h1>
-    </header>   
+    </div>
+    </div>  
+<!---End Main heading-->
 
-    <form id = "weather-form">
-    <input name = "city" type= "text" id= "city-input"/>
-    <button>Submit</button>
-    </form>
+<!---Start row-->
+    <div class="row"></div>
+    <form id = "weather-form"></form>
 
-   <div id= "city-btns"></div>
+<!---Input group-->
+    <div name = "city" id= "city-input"></div>
+    <button id= "searchBtn"></button>
+
+
+   <div id= "currentCity"></div>
 
 
 

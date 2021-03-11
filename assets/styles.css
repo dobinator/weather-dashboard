@@ -7,11 +7,17 @@ body{
 
 header{
     background-color:#333;
-    padding: 40px;
     color: white; 
     font-size: 18px;
     text-align: center;
 }
 main{
     padding: 20px;
+}
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }
