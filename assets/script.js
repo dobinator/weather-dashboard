@@ -4,7 +4,7 @@ var api_key = "452c3222c520d5a1ef11ff57192c158b";
 var form = document.querySelector("#weather-form");
 var inputCity= localStorage.getItem("#inputCity");
 var searchBtns = document.getElementById("searchBtn");
-var cities= 
+//var cities = localStorage.getItem("cities"); 
 
 
 if (inputCity){
@@ -21,20 +21,24 @@ function kelvinToFahrenheit(temp){
 
 //calling the function to render the city buttons
 function renderCityBtns(){
-    cities.forEach (function(city){
+    searchBtns.innerHTML = " ";
+    inputCity.forEach(function(city){
         //build a btn
         var btn= document.createElement("searchBtn");
         //set its text to be the city name
-        var btn= document.createElement("searchBtn");
+        newBtn= inputCity.value  
         //append the btn to the city-btn div
-    })
+        searchBtns.append(newBtn); 
+    });
 }
+renderCityBtns();
+
 
 // event Listener for our form submit
  form.addEventListener("submit", function (e){
 
     e.preventDefault();
-    var city = document.querySelector("#city-input").value; 
+    var city = document.querySelector("inputCity").value; 
     
     getWeather(city);
 }); 
@@ -65,11 +69,12 @@ function getWeather(city){
             alert("City not found");
             return;
         }// save the user input for name of city 
-        if (!cities.includes(weather.name)){
-            cities.push(weather.name);
-            localStorage.setItem("currentCity,", JSON.stringify(cities));
+        if (!inputCity.includes(weather.name)){
+            inputCity.push(weather.name);
+            localStorage.setItem("currentCity,", JSON.stringify(city));
             renderCityBtns(); 
         }
+        //lat and long for the api call
         var lat = weather.coord.lat;
         var lon= weather.coord.lon;
         
