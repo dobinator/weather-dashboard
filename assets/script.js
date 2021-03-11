@@ -3,7 +3,8 @@ var api_key = "452c3222c520d5a1ef11ff57192c158b";
 //activating HTML in JS
 var form = document.querySelector("#weather-form");
 var inputCity= localStorage.getItem("#inputCity");
-var searchBtns = document.getElementById("searchBtn")
+var searchBtns = document.getElementById("searchBtn");
+var cities= 
 
 
 if (inputCity){
