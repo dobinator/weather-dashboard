@@ -1,8 +1,8 @@
 //api key for app to work
-const api_key = "452c3222c520d5a1ef11ff57192c158b"; 
+const api_key = "34cf1d928154aa6755ddab973ba1a01c"; 
 //activating HTML in 
 var forecastContainer = document.querySelector("#forecast-container"); 
-var inputCity = JSON.parse(localStorage.getItem("cities"))|| [] 
+var inputCity = JSON.parse(localStorage.getItem("inputCity"))|| [] 
 var searchHistory= document.getElementById ("searchHistory") 
 var todaysWeather= document.getElementById("currentCity")
 var search= document.getElementById("citySearchBtn")
@@ -11,10 +11,6 @@ var search= document.getElementById("citySearchBtn")
 // function searchCity()
 // search.on("click")
   
-
-
-
-
 
 
 //Function for Current Day
@@ -38,8 +34,8 @@ function getWeather(city){
       .then((data) => data.json())
       .then (function (oneCallData){
 
-        var citySeachForm= document.getElementbyId("citySearchForm");
-        citySearchForm.append()
+        var citySeachForm = document.getElementbyId("citySearchForm");
+        citySearchForm.append("sidebar")
        
         // City name 
         var cityEl= document.getElementById("inputCityLabel");
@@ -60,7 +56,7 @@ function getWeather(city){
         }
         citySearchForm.append(uvEL); 
         currentContainer.innerHTML= ""; 
-        currentContainer.append(mainCard);
+        currentContainer.append(citySearchForm);
     });
     
 
