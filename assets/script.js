@@ -20,6 +20,7 @@ function renderCityBtns(){
 }
 renderCityBtns();
 
+
 // event Listener for our form submit
 search.addEventListener("click", function (e){
     e.preventDefault();
@@ -47,26 +48,30 @@ var formattedTime =
 formatDate()
 
 
-
-//Listen to our users click on the button, call the function of the event
-//  searchBtns.addEventListener("click", function(e){
-    //     //stopping the search if the button has already populated the city
-    //     e.preventDefault();
-    
-    //     if(!e.target.matches("searchBtn")) return;
-    
-    //     var city= e.target.textContent;
-    //     getWeather(city); 
-    // });
-    
     //function takes city name and retrieves weather data for that city
-    function getWeather(city){
- var currentWeatherUrl= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;      
+    function getFiveDay(city){
+ var getFiveDay= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;      
  //send fetch request to get latitude and longitude
-    fetch(currentWeatherUrl)
-    .then((data)=>data.json())
-    .then(function (weather){
-    //console.log(weather)
+    fetch(getFiveDay)
+     .then((data)=>data.json())
+     .then(function (oneCallData) {
+    var currentDay= fiveDayArray.list
+    for(let index= 4; index < fiveDayArray.length; index= index+ 8){
+        var currentDay = fiveDayArray[index]
+        var forecastCard = document.createElement("div")
+        forecastCard.classList.add("forecastCard")
+
+        var dateEl= document.createElement("h2")
+        dateEl.textContent= currentDay.dy_txt.slice(0,10) + "3:00"
+        forecastCard.append(dateEl)
+
+        forecastContainer.append(forecastCard)
+    }
+    
+
+
+
+
     //alert created if the user enters a city not found
     if(weather.cod === "404") {
     alert("City not found");
@@ -79,16 +84,17 @@ formatDate()
     localStorage.setItem("cities", JSON.stringify(inputCity));
     renderCityBtns(); 
     }
+    
   var lat = weather.coord.lat;
   var lon= weather.coord.lon;
             
  //temp for the api call
-var temp = document.createElement("p").textContent= weather.main.temp
-todaysWeather.append(temp)
+ var temp = document.createElement("p").textContent= weather.main.temp
+ todaysWeather.append(temp)
 //wind speed for the api call
-var wind = document.createElement("p").textContent= weather.wind_speed
-windSpeed.append(wind)
-// 
+// var wind = document.createElement("p").textContent= weather.wind_speed
+// windSpeed.append(wind)
+// // 
 //api call for the latitude and longitude
 var onecallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${api_key}`;
 fetch(onecallURL)

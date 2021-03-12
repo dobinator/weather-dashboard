@@ -11,72 +11,92 @@
 </head>
 <body>
     <!---Main heading-->
-    <div class = "container">
-    <header class = "row">
-      <div class = "col-12 col-md-6 bg-dark text light">
-        <header>
+    <div class = "jumbotron jumbotron-fluid bg-dark text-light py-4 mb-0 sticky-top flex-md-nowrap">
+    <header class = "container text-center">
+      <h1 class="display-5 mb-0">Weather Dashboard</h1>
+      <header>
     
-<!---Left panel-->
-     <form id = "weather-form"></form>
-        <div class = "mb-3">
-          <label for = "city" class = "form-label" id = "searchHistory">WeatherDashboard</label>
-        <input 
-        type = "text"
-        class = "form-control"
-        id = "inputCity"
-        aria-described by ="city-name"
-        />
-    <button id = "searchBtn" class = "btn btn-primary">City Search</button>
-        </form>
+<!---sidebar with search bar-->
+<sidebar class= "sidebar- sticky col-sm-4 col-md-3 bg-light pt-3"></sidebar>
+  <label class ="font-weight-bold" for= "inputCity" id="inputCityLabel">Search for a City</label>
+     <form id = "citySearchForm">
+         <div class="form-group">
+        <div class = "input-group mb-3">
+         <input type = "city" class = "form-control" id = "searchHistory"> 
+        <div class= "input-group-append">
+         <button class="btn btn-primary" type="button" id="citySearch">Search<i class="fa fa-search"></i></button>
+        </div>
     </div>
-    <div class = "col-md-8"></div>
+    </div>
+</div>
+</form>
 
      <!----dashboard------>
-        <div id = "dashboard"></div>
-        <div id = "forecast"></div>
-        <div id = "currentCity">
-         <h2>5 Day Forecast</h2>
-        </div>
-<!----right side-->
-        <div class= "col">
-        <div class= "bg-primary">
-        <h3></h3>
-        <img src="" alt=""/>
-        <div></div>
-        <div></div>
-        </div>
+        <content class = "col-sm-8 col-md-9">
+        <div id="weatherContent" class="pt-3-hide">
+         <div class= "card w-100">
+            <div class ="card-body py-2">
+                <h3 class= "card-title font-weight-bold mb-0"><img id= "icon" alt= "weather icon"/><h3>
+                    <div class= "card-text mt-0">
+                        <p class="temp"></p>
+                        <p class="humidity"></p>
+                        <p class="windSpeed"></p>
+                        <p class="uvIndex"></p>
 
-        <div class= "col">
-            <div class= "bg-primary">
-            <h3></h3>
-            <img src="" alt=""/>
-            <div></div>
-            <div></div>
+                    </div>
+                </div>
+            </div>
         </div>
+<!----5 day forecast---->
+        <section class= "container-fluid" id="forecastSection">
+            <h3 class= "font-wight-bold my-4">5-Day Forecast:</h3>
+            <div class= "row text-center" id ="forecastRow"></div>
 
-       <div class= "col">
-            <div class= "bg-primary">
-            <h3></h3>
-            <img src="" alt=""/>
-            <div></div>
-            <div></div>
+        <!----Forecast 1-->
+        <div class= "col-20">
+        <div class= "forecast-container bg- primary text-white mb-4">
+            <h5 class= "date-title font-weight-bold"></h5>
+            <img id= "forecastIcon" alt="Weather Forecast Icon">
+            <p class= "font-weight-bold" id= "temperature"></p>
+            <p class= "font-weight-bold" id= "humidity"></p>
         </div>
-
-        <div class= "col">
-            <div class= "bg-primary">
-            <h3></h3>
-            <img src="" alt=""/>
-            <div></div>
-            <div></div>
         </div>
-
-        <div class= "col">
-            <div class= "bg-primary">
-            <h3></h3>
-            <img src="" alt=""/>
-            <div></div>
-            <div></div>
-        </div>
+            <!----Forecast 2-->
+        <div class= "col-20">
+            <div class= "forecast-container bg- primary text-white mb-4">
+                <h5 class= "date-title font-weight-bold"></h5>
+                <img id= "forecastIcon" alt="Weather Forecast Icon">
+                <p class= "font-weight-bold" id= "temperature"></p>
+                <p class= "font-weight-bold" id= "humidity"></p>
+            </div>
+            </div>
+            <!----Forecast 3-->
+        <div class= "col-20">
+            <div class= "forecast-container bg- primary text-white mb-4">
+                <h5 class= "date-title font-weight-bold"></h5>
+                <img id= "forecastIcon" alt="Weather Forecast Icon">
+                <p class= "font-weight-bold" id= "temperature"></p>
+                <p class= "font-weight-bold" id= "humidity"></p>
+            </div>
+            </div>
+            <!----Forecast 4-->
+        <div class= "col-20">
+            <div class= "forecast-container bg- primary text-white mb-4">
+                <h5 class= "date-title font-weight-bold"></h5>
+                <img id= "forecastIcon" alt="Weather Forecast Icon">
+                <p class= "font-weight-bold" id= "temperature"></p>
+                <p class= "font-weight-bold" id= "humidity"></p>
+            </div>
+            </div>
+            <!----Forecast 5-->
+        <div class= "col-20">
+            <div class= "forecast-container bg- primary text-white mb-4">
+                <h5 class= "date-title font-weight-bold"></h5>
+                <img id= "forecastIcon" alt="Weather Forecast Icon">
+                <p class= "font-weight-bold" id= "temperature"></p>
+                <p class= "font-weight-bold" id= "humidity"></p>
+            </div>
+            </div>
     
     
     
@@ -87,6 +107,6 @@
 
 
     <script src="./assets/script.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
 </body>
 </html>
