@@ -12,13 +12,17 @@ var search= document.getElementById("citySearchBtn")
 // search.on("click")
   
 
-
 //Function for Current Day
 function getWeather(city){
+    //getting the api key in a varible
     var currentWeatherUrl= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;      
+    //making the call to the api
     fetch.length(currentWeatherUrl)
+    //asking for the data that returns to be translated into JSON
     .then ((data)=> data.json())
+    //specifically looking at the weather return
     .then (function(weather) {
+        //if the city entered in is not vali, alerting the user
         if(weather.cod==="404"){
          //display message to user
          alert("City not found");
@@ -27,18 +31,24 @@ function getWeather(city){
 
         var lat = weather.coord.lat;
         var lon= weather.coord.lon;
-
+//setting up the second api call variable
     var oneCallUrl= `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${api_key}`;
     });
+    // calling api 
       fetch(oneCallUrl)
+      //again getting the data and translating into JSON
       .then((data) => data.json())
       .then (function (oneCallData){
 
+        // creating a varible to display the date from html element
         var citySeachForm = document.getElementbyId("citySearchForm");
+        //sticking the data on the sidebar
         citySearchForm.append("sidebar")
        
         // City name 
+        //creating a variable to display the city name from the html element
         var cityEl= document.getElementById("inputCityLabel");
+        //adding it to document, adding a date as well.
         cityEl.textContent = city+ "-" +new Date().toDateString();
         citySearchForm.append(cityEl); 
 
@@ -111,10 +121,13 @@ historyContainer.addEventListener("click", function(e){
 
 })
 
-$("citySearchbtn").on("click", function (event){
-    event.preventDefault();
-    var city = $("#city-input").val();
-    history.push(city);
+// ("citySearchbtn").on("click", function (event){
+//     event.preventDefault();
+//     var city = $("#city-input").val();
+// history.push(city);
+
+
+
     handleCity(city); 
     getWeather(city); 
     getFiveDay(city); 
@@ -131,14 +144,14 @@ function handleCity(cityName){
     }
 
     }
-
-    renderPast()
-    function renderPast(){
-      historyContainer.innerHTML= "";
-      for(const city of past){
-          var previousCity = document.createElement("li");
-          previousCity.textContent=city
-          historyContainer.append(previousCity); 
+// do not understand this....
+    // renderPast()
+    // function renderPast(){
+    //   historyContainer.innerHTML= "";
+    //   for(const city of past){
+    //       var previousCity = document.createElement("li");
+    //       previousCity.textContent=city
+    //       historyContainer.append(previousCity); 
 
       }
 
