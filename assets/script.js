@@ -7,6 +7,7 @@ var searchHistory= document.getElementById ("searchHistory")
 var todaysWeather= document.getElementById("currentCity")
 var search= document.getElementById("searchBtn")
 
+//Function for Current Day
 function getWeather(city){
     var currentWeatherUrl= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;      
     fetch.length(currentWeatherUrl)
@@ -17,49 +18,62 @@ function getWeather(city){
          alert("City not found");
          return;
         };
+        var lat = weather.coord.lat;
+        var lon= weather.coord.lon;
+
     var oneCallUrl= `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${api_key}`;
     });
-    var lat = weather.coord.lat;
-    var lon= weather.coord.lon;
       fetch(oneCallUrl)
       .then((data) => data.json())
       .then (function (oneCallData){
+
         var mainCard= document.createElement("div");
         mainCard.classList.add("mainCard");
-       // Header
+       
+        // Header
+
         var cityEl= document.createElement("h2");
-        cityEl.textContent = city + " - " +new Date().toDateString();
+        cityEl.textContent = city+ "-" +new Date().toDateString();
         mainCard.append(cityEl); 
 
         //UV 
-        var uvEL= document.createElement("p");
-        uvEL.textContent= city+ " - " +new Date().toDateString();
+
+        var uvEL= document.getElementById("uvIndex");
+        var uvIndex= oneCallData.current.uvi;
+        uvEL.textContent= oneCallData.current.uvi);
+        if(uvIndex <= 2){
+            uvEl.classList.add("favorable");
+        }else if(unIndex >=5){
+            uvEl.classList.add("severe");
+        }else{
+            uvEl.ClassList.add("moderate"); 
+        }
         mainCard.append(uvEL); 
-
+        currentContainer.innerHTML= ""; 
         currentContainer.append(mainCard);
-    }
+    });
 
-//calling the function to render the city buttons
-function renderCityBtns(){
-     for( i= 0; i <inputCity.length; i++){
-        var btn = document.createElement("button");
-        //set its text to be the city name
-        btn.textContent = inputCity[i]; 
-        //append the btn to the city-btn div
-        searchHistory.append(btn); 
-    }   
-}
-renderCityBtns();
+// //calling the function to render the city buttons
+//  function renderCityBtns(){
+//      for( i= 0; i <inputCity.length; i++){
+//         var btn = document.createElement("button");
+//         //set its text to be the city name
+//         btn.textContent = inputCity[i]; 
+//         //append the btn to the city-btn div
+//         searchHistory.append(btn); 
+//     }   
+// }
+// renderCityBtns();
 
-// event Listener for our form submit
-search.addEventListener("click", function (e){
-    e.preventDefault();
-    var city = document.querySelector("#inputCity").value; 
-    console.log(city)
-    getWeather(city);
-});
-
-    //function takes city name and retrieves weather data for that city
+// // event Listener for our form submit
+// search.addEventListener("click", function (e){
+//     e.preventDefault();
+//     var city = document.querySelector("#inputCity").value; 
+//     console.log(city)
+//     getWeather(city);
+// });
+  //function takes city name and retrieves weather data for that city
+  //Function for Five Day () 
  function getFiveDay(city){
  var getFiveDay= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;      
  //send fetch request to get latitude and longitude
@@ -90,7 +104,7 @@ search.addEventListener("click", function (e){
         forecastContainer.append(forecastCard)
     }    
 
-}};
+});
 }
 
 //  //temp for the api call
@@ -123,4 +137,4 @@ function handleCity(cityName){
     // After the array has been updated, we store it under the key of history so that when the page reloads you get the most recent search.
 
 
-}
+}}; 
