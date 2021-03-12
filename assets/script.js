@@ -29,9 +29,6 @@ function getWeather(city){
          return;
         };
 
-    console.log(hello)
-
-    
         var lat = weather.coord.lat;
         var lon= weather.coord.lon;
 
@@ -41,13 +38,13 @@ function getWeather(city){
       .then((data) => data.json())
       .then (function (oneCallData){
 
-        var mainCard= document.createElement("div");
-        mainCard.classList.add("mainCard");
+        var citySeachForm= document.getElementbyId("citySearchForm");
+        citySearchForm.append()
        
         // City name 
-        var cityEl= document.createElement("h2");
+        var cityEl= document.getElementById("inputCityLabel");
         cityEl.textContent = city+ "-" +new Date().toDateString();
-        mainCard.append(cityEl); 
+        citySearchForm.append(cityEl); 
 
         //UV 
         var uvEL= document.getElementById("uvIndex");
@@ -61,7 +58,7 @@ function getWeather(city){
         }else{
             uvEl.ClassList.add("moderate"); 
         }
-        mainCard.append(uvEL); 
+        citySearchForm.append(uvEL); 
         currentContainer.innerHTML= ""; 
         currentContainer.append(mainCard);
     });
