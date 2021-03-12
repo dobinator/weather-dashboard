@@ -5,7 +5,17 @@ var forecastContainer = document.querySelector("#forecast-container");
 var inputCity = JSON.parse(localStorage.getItem("cities"))|| [] 
 var searchHistory= document.getElementById ("searchHistory") 
 var todaysWeather= document.getElementById("currentCity")
-var search= document.getElementById("searchBtn")
+var search= document.getElementById("citySearchBtn")
+
+
+// function searchCity()
+// search.on("click")
+  
+
+
+
+
+
 
 //Function for Current Day
 function getWeather(city){
@@ -18,6 +28,10 @@ function getWeather(city){
          alert("City not found");
          return;
         };
+
+    console.log(hello)
+
+    
         var lat = weather.coord.lat;
         var lon= weather.coord.lon;
 
@@ -30,17 +44,16 @@ function getWeather(city){
         var mainCard= document.createElement("div");
         mainCard.classList.add("mainCard");
        
-        // Header
-
+        // City name 
         var cityEl= document.createElement("h2");
         cityEl.textContent = city+ "-" +new Date().toDateString();
         mainCard.append(cityEl); 
 
         //UV 
-
         var uvEL= document.getElementById("uvIndex");
         var uvIndex= oneCallData.current.uvi;
-        uvEL.textContent= oneCallData.current.uvi);
+        uvEL.textContent= oneCallData.current.uvi;
+
         if(uvIndex <= 2){
             uvEl.classList.add("favorable");
         }else if(unIndex >=5){
@@ -52,27 +65,9 @@ function getWeather(city){
         currentContainer.innerHTML= ""; 
         currentContainer.append(mainCard);
     });
+    
 
-// //calling the function to render the city buttons
-//  function renderCityBtns(){
-//      for( i= 0; i <inputCity.length; i++){
-//         var btn = document.createElement("button");
-//         //set its text to be the city name
-//         btn.textContent = inputCity[i]; 
-//         //append the btn to the city-btn div
-//         searchHistory.append(btn); 
-//     }   
-// }
-// renderCityBtns();
 
-// // event Listener for our form submit
-// search.addEventListener("click", function (e){
-//     e.preventDefault();
-//     var city = document.querySelector("#inputCity").value; 
-//     console.log(city)
-//     getWeather(city);
-// });
-  //function takes city name and retrieves weather data for that city
   //Function for Five Day () 
  function getFiveDay(city){
  var getFiveDay= `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;      
@@ -88,8 +83,14 @@ function getWeather(city){
     
         //date
         var dateEl= document.createElement("h2")
-        dateEl.textContent= currentDay.dy_txt.slice(0,10) + "3:00"
-        forecastCard.append(dateEl)
+        dateEl.textContent= currentDay.dy_txt.slice(0,10) + "3:00"; 
+        forecastCard.append(dateEl);
+
+        //Image
+        var imageEl = document.getElementById("icon");
+        imageEl.setAttribute( "src" `http://openweathermap.org/img/wn/${currentDay.weather[0].icon}@2x.png`);
+        imageEl.setAttribute("width", "50%");
+        forecastCard.append(imageEl);
 
         //temperature
         var tempEl= document.getElementById("temperature");
@@ -107,34 +108,45 @@ function getWeather(city){
 });
 }
 
-//  //temp for the api call
-//  var temp = document.createElement("p").textContent= weather.main.temp
-//  todaysWeather.append(temp)
-// }}};
-$(".sbmtbutton").on("click", function (event){
+historyContainer.addEventListener("click", function(e){
+   e.preventDefault()
+   if(!e.target.matches("li"))return;
+   getWeather(e.target.textContent)
+   getFiveDay(e.target.textContent)
+
+
+
+})
+
+$("citySearchbtn").on("click", function (event){
     event.preventDefault();
     var city = $("#city-input").val();
     history.push(city);
     handleCity(city); 
     getWeather(city); 
     getFiveDay(city); 
+
+
 });
 
 
 
 function handleCity(cityName){
     // treat as a catch all for each item in history array
-    if(!history. includes(cityName)){
-        history.push(cityName)
+    if(!past.includes(cityName)){
+        past.push(cityName)
     }
-    for(const city of history){
 
     }
-    // Each item gets a p tag 
-    // add an event listener
-    // call getWeather and buildDashboard using the value of whatever 
-    // Push into history array the most recent search
-    // After the array has been updated, we store it under the key of history so that when the page reloads you get the most recent search.
 
+    renderPast()
+    function renderPast(){
+      historyContainer.innerHTML= "";
+      for(const city of past){
+          var previousCity = document.createElement("li");
+          previousCity.textContent=city
+          historyContainer.append(previousCity); 
 
-}}; 
+      }
+
+    }};

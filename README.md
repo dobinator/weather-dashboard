@@ -15,3 +15,6 @@ API links
 current weather docs
 
 5 day forecast
+
+
+![weatherdashboard](./assets/images/screenshot.png)
