@@ -23,14 +23,14 @@ function getWeather(city){
     //specifically looking at the weather return
     .then (function(weather) {
         //if the city entered in is not vali, alerting the user
-        if(weather.cod==="404"){
+        if(data[weather][cod]==="404"){
          //display message to user
          alert("City not found");
          return;
         };
 
-        var lat = weather.coord.lat;
-        var lon= weather.coord.lon;
+        var lat = data[weather][coord][lat];
+        var lon= data[weather][coord][lon];
 //setting up the second api call variable
     var oneCallUrl= `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${api_key}`;
     });
