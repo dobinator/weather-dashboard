@@ -9,6 +9,11 @@ body{
 .p{
     font-size: 15px;
 }
+
+
+.forecast-card{
+    background-color:#428BCA ;
+}
 .hide {
     display: none;
 }

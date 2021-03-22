@@ -35,7 +35,6 @@ function getWeather(city) {
         temp = temp.innerHTML = "Temperature: "+ Math.floor(((data['main']['temp']- 273.15) * 1.80 + 32))+" ℉";
         humidity = humidity.innerHTML = "Humidity: "+ (data['main']['humidity']+"%");
         windSpeed = windSpeed.innerHTML = "Windspeed: "+ (data['wind']['speed'] .toFixed(1)+ "MPH");
-        // icon = icon.innerHTML = "src",` http://openweathermap.org/img/w`+ data.weather[0].icon+ ".png"; 
         icon.setAttribute("src", `http://openweathermap.org/img/w/`+ data.weather[0].icon+ ".png")
                 var lat = data['coord']['lat'];
                 var lon = data['coord']['lon'];
@@ -60,25 +59,54 @@ function getWeather(city) {
         }
     var id = 1
     function fiveDay (city){
-     var getFiveDay= `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`; 
+     var getFiveDay= `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`; 
     fetch(getFiveDay)
     .then((data)=>data.json())
     .then(function (data){
-        console.log(data)
+        console.log("data;  ", data)
            var currentDay= data.list
             for(let index= 0; index < currentDay.length; index++){
             var today = currentDay[index]
+            console.log("currentDayIndex: ", currentDay[index])
             if (today.dt_txt.indexOf ("09:00:00")!== -1){
             var date= document.getElementById (`date${id}`)
-            date.textContent = today.dt_txt.slice(0,9)
+            date.textContent = today.dt_txt.slice(0,10)
             var img= document.getElementById(`forecastIcon${id}`)
-            img.setAttribute ("src", `http://openweathermap.org/img/w/`+ today.weather[0].icon+ ".png")
+            img.setAttribute ("src", `https://openweathermap.org/img/w/`+ today.weather[0].icon+ ".png") 
             id++
+            // var temperature= document.getElementById (`temperature${id}`)
+            // temperature.textContent = today.main.temp
+            // var humidity = document.getElementById (`humidity${id}`)
+            // humidity.textContent= today.main.temp
+            // var windSpeed = document.getElementById (`windSpeed${id}`)
+            // windSpeed.textContent = today.wind.speed
+            
+            
+            
             }
-            }
-  
+        }
                     
     })}
+
+
+    //  function uvIndexFive(city){
+    //     fetch(oneCallURL)
+    //     .then((response )=> response.json())
+    //     .then (data => {
+    //      var uvIndex = document.getElementbyId(`uvindex${id}`)
+     
+    //     })
+
+
+    // }
+
+
+
+
+
+
+
+
 
 
  cityBtn.addEventListener ("click", function(e){
