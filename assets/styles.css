@@ -13,14 +13,7 @@ body{
 
 .forecast-card{
     background-color:#428BCA ;
-}
-.hide {
-    display: none;
-}
-
-.show {
-    display: block;
-}
+};
 
 .lowUv{
  color: green;    
