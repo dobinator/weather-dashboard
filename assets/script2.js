@@ -54,13 +54,22 @@ function uvIndexValue(lat, lon) {
   fetch(oneCallURL)
     .then((response) => response.json())
     .then((data) => {
-      uvIndex = uvIndex.innerHTML = "UV Index: " + data.current.uvi;
+      const uvI= data.current.uvi
+      uvIndex.innerHTML = "UV Index: " + uvI
+      if (uvI < 2 ){
+        uvIndex.classList.add("lowUv")
+      }else if (uvI > 5){
+        uvIndex.classList.add("highUv")
+      }else {
+        uvIndex.classList.add("mediumUv")
+      }
       console.log(data);
      
       }
     )};
 
 var id = 1;
+console.log(id)
 function fiveDay(city) {
   var getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
   fetch(getFiveDay)
@@ -78,17 +87,16 @@ function fiveDay(city) {
           img.setAttribute ( "src",
             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
           );
-          id++;
-          var temperature = document.getElementById (`temperature${id} `);
-          temperature.textContent = today.dt.main[temp] + " ℉";
-          id++;
-        //  var humidity = document.getElementById (`humidity${id}`)
-        //  humidity.textContent = today.dt.main.humidity
-          // id++;
-         
+    
+          var temperature = document.getElementById (`temperature${id}`);
+          temperature.textContent = today.main.temp + " ℉";
+        
+         var humidity = document.getElementById (`humidity${id}`)
+         humidity.textContent = today.main.humidity
 
-          // var windSpeed = document.getElementById (`windSpeed${id}`)
-          // windSpeed.textContent = today.wind.speed
+          var windSpeed = document.getElementById (`windspeed${id}`)
+           windSpeed.textContent = +(today.wind.speed).toFixed()
+           id++;
         }
       }
     });

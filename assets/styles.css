@@ -1,10 +1,10 @@
 
 body{
     margin: 0;
-    background-color: #E3E4E0;
+    /* background-color: #E3E4E0;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: white;
-}
+    font-size: 18px; */
+} 
 
 .p{
     font-size: 15px;
@@ -22,8 +22,13 @@ body{
     display: block;
 }
 
-#uVIndex {
-/* background-color: red;
-background-color: green;
-background-color: yellow; */
-}
+.lowUv{
+ color: green;    
+};
+.mediumUv{
+  color: yellow; 
+};
+
+.highUv{
+ color: red;
+}; 
