@@ -87,13 +87,10 @@ function fiveDay(city) {
           img.setAttribute ( "src",
             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
           );
-    
           var temperature = document.getElementById (`temperature${id}`);
           temperature.textContent = today.main.temp + " ℉";
-        
          var humidity = document.getElementById (`humidity${id}`)
          humidity.textContent = today.main.humidity
-
           var windSpeed = document.getElementById (`windspeed${id}`)
            windSpeed.textContent = +(today.wind.speed).toFixed()
            id++;
