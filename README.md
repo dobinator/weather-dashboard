@@ -12,9 +12,11 @@ The application will contain and  utilize HTML, CSS, Javascript and a Readme fil
 
 
 API links
+
+
 current weather docs
 
-5 day forecast
+5 day forecast:
 
 
 ![weatherdashboard](./assets/images/screenshot.png)
