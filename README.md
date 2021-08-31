@@ -1,22 +1,18 @@
 # weather-dashboard
-Server side API- this assignment is using third party api's to create a weather dashboard with form inputs. The user can search for a city with current and future conditions for that city. 
+
+## Description
+Server side API- this assignment is using third party API's to create a weather dashboard with form inputs. The user can search for a city with current and future conditions (5 day forecast) for that city. 
 
 
 
-
+## USER STORY
 AS A traveler
 I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 
-The application will contain and  utilize HTML, CSS, Javascript and a Readme file.
+The application will utilize: HTML, CSS, Javascript and a Readme file. 
 
 
-API links
-
-
-current weather docs
-
-5 day forecast:
 
 
 ![weatherdashboard](./assets/images/screenshot.png)
