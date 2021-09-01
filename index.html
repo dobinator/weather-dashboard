@@ -21,42 +21,46 @@
 <div class="container-fluid">
     <div class="row">
 <!--Start column-->
-<div class="col-lg-3 bg-light pt-3 pb-6">
-  <label class ="font-weight-bold" for= "inputCity" id="inputCityLabel">Search for a City</label>
-        <form id = "citySearchForm">
+<div class="col-lg-3 bg-light pt-3 pb-3">
+            <label class ="font-weight-bold" for= "inputCity" id="inputCityLabel">Search for a City</label>
+                <form id = "citySearchForm"></form>
 
         <!--Start input group-->
-        <div class = "input-group mb-3">
-            <input class = "form-control" id = "searchHistory" type="text"> 
-            <button class="btn btn-primary" type="button" id="citySearchbtn"><i class="fa fa-search"></i></button>
-        </div>
-        </div>
-     </div>
-</form>
+             <div class = "input-group mb-3">
+                 <input class = "form-control" id = "searchHistory" type="text" placeholder="City Name"> 
+                <button class="btn btn-primary" type="button" id="citySearchbtn"><i class="fa fa-search"></i></button>
+            </div>
+    </div>
+ 
+
 
      <!----start card------>
         
-  
+  <!-----this is where the saved cities go-->
          <div class= "card">
                 <ul class="list-group list-group-flush list">     
+        
                 </ul>
         </div>
+    </div>
 
             <!-----start column-->
             <div class ="row justify-content-end">
-            <div class ="col-lg-9">
+            <div class ="col-lg-9" >
+                <!---- add the name of the current city search at the top-->
+            <div id= "currentCity" class="mt-4">
                 <img id= "icon" alt= "weather icon"/>
-                <div class="mt-4"></div> 
+         
                         <li id ="temperature">Temperature</li>
                         <li id ="humidity">Humidity</li>
                         <li id ="windSpeed">Wind Speed</li>
                         <li id ="uvIndex">Uv Index</li>
-
-                    </div> 
+                    </div>
                 </div>
             </div>
+</div>
 <!----5 day forecast---->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row" id= "forecastRow">
             <h3 class= "font-weight-bold my-3">5-Day Forecast</h3>
 
@@ -82,7 +86,7 @@
             </div>
             <!----Forecast 3-->
         <div class= "col-2">
-             <div class= " bg-primary text-white mb-4">
+             <div class= "bg-primary text-white mb-4">
                     <h5  id= "date3" class= "date-title font-weight-bold"></h5>
                         <img id= "forecastIcon3" alt="Weather Forecast Icon"/>
                             <li id= "temperature3">Temperature</li>
