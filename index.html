@@ -12,25 +12,23 @@
 </head>
 <body>
     <!---Main heading-->
-    <div class = "bg-dark pt-2 pb-2 ">
-    <div class = "container">
+    <div class = "bg-dark pt-2 pb-2">
+    <div class = "container-fluid">
       <h1 class="text-white text-center">Weather Dashboard</h1>
     </div>
 </div>
 <!--Start container-->
 <div class="container-fluid">
-
-<!--Start container-->
     <div class="row">
 <!--Start column-->
 <div class="col-lg-3 bg-light pt-3 pb-6">
   <label class ="font-weight-bold" for= "inputCity" id="inputCityLabel">Search for a City</label>
-     <form id = "citySearchForm">
+        <form id = "citySearchForm">
 
         <!--Start input group-->
         <div class = "input-group mb-3">
-         <input class = "form-control" id = "searchHistory" type="text"> 
-         <button class="btn btn-primary" type="button" id="citySearchbtn"><i class="fa fa-search"></i></button>
+            <input class = "form-control" id = "searchHistory" type="text"> 
+            <button class="btn btn-primary" type="button" id="citySearchbtn"><i class="fa fa-search"></i></button>
         </div>
         </div>
      </div>
@@ -45,6 +43,7 @@
         </div>
 
             <!-----start column-->
+            <div class ="row justify-content-end">
             <div class ="col-lg-9">
                 <img id= "icon" alt= "weather icon"/>
                 <div class="mt-4"></div> 
@@ -55,65 +54,66 @@
 
                     </div> 
                 </div>
-    
+            </div>
 <!----5 day forecast---->
     <div class="container">
-        <div class="mt-4 col-md-12">
-            <h3 class= "font-weight-bold my-3 text-center">5-Day Forecast</h3>
-            <div class= "row" id ="forecastRow">
+        <div class="row" id= "forecastRow">
+            <h3 class= "font-weight-bold my-3">5-Day Forecast</h3>
 
         <!----Forecast 1-->
-        <div class= "col">
-        <div class= "forecast bg-primary text-white mb-4">
-            <h5 id= "date1" class= "date-title font-weight-bold"></h5>
-            <img id= "forecastIcon1" alt="Weather Forecast Icon">
-            <li id= "temperature1">Temperature</li>
-            <li id= "humidity1">Humidity</li>
-            <li id= "windspeed1">Wind Speed</li>
-        </div>
+        <div class= "col-2">
+            <div class= "bg-primary text-white mb-4">
+                <h5 id= "date1" class= "date-title font-weight-bold"></h5>
+                    <img id= "forecastIcon1" alt="Weather Forecast Icon"/>
+                    <li id= "temperature1">Temperature</li>
+                    <li id= "humidity1">Humidity</li>
+                    <li id= "windspeed1">Wind Speed</li>
+            </div>
         </div>
             <!----Forecast 2-->
-        <div class="col">
-            <div class= "forecast bg-primary text-white mb-4">
-                <h5 id= "date2" class= "date-title font-weight-bold"></h5>
-                <img id= "forecastIcon2" alt="Weather Forecast Icon">
-                <li id= "temperature2">Temperature</li>
-                <li id= "humidity2">Humidity</li>
-                <li id= "windspeed2">Wind Speed</li>
-            </div>
+        <div class="col-2">
+             <div class= "bg-primary text-white mb-4">
+                     <h5 id= "date2" class= "date-title font-weight-bold"></h5>
+                        <img id= "forecastIcon2" alt="Weather Forecast Icon"/>
+                        <li id= "temperature2">Temperature</li>
+                        <li id= "humidity2">Humidity</li>
+                        <li id= "windspeed2">Wind Speed</li>
+                </div>
             </div>
             <!----Forecast 3-->
-        <div class= "col">
-            <div class= "forecast bg-primary text-white mb-4">
-                <h5  id= "date3" class= "date-title font-weight-bold"></h5>
-                <img id= "forecastIcon3" alt="Weather Forecast Icon">
-                <li id= "temperature3">Temperature</li>
-                <li id= "humidity3">Humidity</li>
-                <li id= "windspeed3">Wind Speed</li>
-            </div>
+        <div class= "col-2">
+             <div class= " bg-primary text-white mb-4">
+                    <h5  id= "date3" class= "date-title font-weight-bold"></h5>
+                        <img id= "forecastIcon3" alt="Weather Forecast Icon"/>
+                            <li id= "temperature3">Temperature</li>
+                            <li id= "humidity3">Humidity</li>
+                            <li id= "windspeed3">Wind Speed</li>
+                </div>
             </div>
             <!----Forecast 4-->
-        <div class= "col">
-            <div class= "forecast bg-primary text-white mb-4">
-                <h5 id= "date4" class= "date-title font-weight-bold"></h5>
-                <img id= "forecastIcon4" alt="Weather Forecast Icon">
-                <li id= "temperature4">Temperature</li>
-                <li id= "humidity4">Humidity</li>
-                <li id= "windspeed4">Wind Speed</li>
-            </div>
-            </div>
-            <!----Forecast 5-->
-        <div class= "col">
-            <div class= "forecast bg-primary text-white mb-4">
-                <h5 id= "date5" class= "date-title font-weight-bold"></h5>
-                <img id= "forecastIcon5" alt="Weather Forecast Icon">
-                <li id= "temperature5">Temperature</li>
-                <li id= "humidity5">Humidity</li>
-                <li id= "windspeed5">Wind Speed</li>
-            </div>
+        <div class= "col-2">
+            <div class= "bg-primary text-white mb-4">
+                    <h5 id= "date4" class= "date-title font-weight-bold"></h5>
+                    <img id= "forecastIcon4" alt="Weather Forecast Icon"/>
+                        <li id= "temperature4">Temperature</li>
+                        <li id= "humidity4">Humidity</li>
+                        <li id= "windspeed4">Wind Speed</li>
             </div>
         </div>
+            <!----Forecast 5-->
+        <div class= "col-2">
+                <div class= "bg-primary text-white mb-4">
+                    <h5 id= "date5" class= "date-title font-weight-bold"></h5>
+                    <img id= "forecastIcon5" alt="Weather Forecast Icon"/>
+                        <li id= "temperature5">Temperature</li>
+                        <li id= "humidity5">Humidity</li>
+                        <li id= "windspeed5">Wind Speed</li>
+                </div>
+        </div>
 
+
+         </div>
+        </div>
 
     <script src="./assets/script2.js" ></script>
 

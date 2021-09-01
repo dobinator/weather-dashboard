@@ -80,7 +80,7 @@ function fiveDay(city) {
       for (let index = 0; index < currentDay.length; index++) {
         var today = currentDay[index];
         console.log("currentDayIndex: ", currentDay[index]);
-        if (today.dt_txt.indexOf("09:00:00") !== -1) {
+        if (today.dt_txt.indexOf("12:00:00") !== -1) {
           var date = document.getElementById(`date${id}`);
           date.textContent = today.dt_txt.slice(0, 10);
           var img = document.getElementById(`forecastIcon${id}`);
