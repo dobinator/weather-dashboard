@@ -6,14 +6,13 @@ body{
     font-size: 18px; */
 } 
 
-.p{
-    font-size: 15px;
+li {
+    font-size: 20px;
+    list-style-type: none;
 }
 
 
-.forecast-card{
-    background-color:#428BCA ;
-};
+
 
 .lowUv{
  color: green;    

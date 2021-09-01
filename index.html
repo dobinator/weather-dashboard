@@ -12,95 +12,107 @@
 </head>
 <body>
     <!---Main heading-->
-    <div class = "jumbotron jumbotron-fluid bg-dark text-light py-4 mb-0 sticky-top flex-md-nowrap">
-    <header class = "container text-center">
-      <h1 class="display-5 mb-0">Weather Dashboard</h1>
-      <header>
-    
-<!---sidebar with search bar-->
-<sidebar class= "sidebar-sticky col-sm-4 col-md-3 bg-light pt-3"></sidebar>
-  <label class ="font-weight-bold" for= "inputCity" id="inputCityLabel">Search for a City</label>
-     <form id = "citySearchForm">
-        <div class = "input-group mb-3">
-         <input class = "form-control" id = "searchHistory"> 
-         <button class="btn btn-primary" type="button" id="citySearchbtn"><i class="fa fa-search"></i></button>
-        </div>
+    <div class = "bg-dark pt-2 pb-2 ">
+    <div class = "container">
+      <h1 class="text-white text-center">Weather Dashboard</h1>
     </div>
 </div>
+<!--Start container-->
+<div class="container-fluid">
+
+<!--Start container-->
+    <div class="row">
+<!--Start column-->
+<div class="col-lg-3 bg-light pt-3 pb-6">
+  <label class ="font-weight-bold" for= "inputCity" id="inputCityLabel">Search for a City</label>
+     <form id = "citySearchForm">
+
+        <!--Start input group-->
+        <div class = "input-group mb-3">
+         <input class = "form-control" id = "searchHistory" type="text"> 
+         <button class="btn btn-primary" type="button" id="citySearchbtn"><i class="fa fa-search"></i></button>
+        </div>
+        </div>
+     </div>
 </form>
 
-     <!----dashboard------>
-        <content class = "col-sm-8 col-md-9">
-        <div id="weatherContent" class="pt-3">
-         <div class= "card w-100">
-            <div class ="card-body py-2">
-                <h3 class= "card-title font-weight-bold mb-0"><img id= "icon" alt= "weather icon"/><h3>
-                    <div class= "card-text mt-0">
-                        <p id ="temperature">Temperature</p>
-                        <p id ="humidity">Humidity</p>
-                        <p id ="windSpeed">Wind Speed</p>
-                        <p id ="uvIndex">Uv Index</p>
+     <!----start card------>
+        
+  
+         <div class= "card">
+                <ul class="list-group list-group-flush list">     
+                </ul>
+        </div>
+
+            <!-----start column-->
+            <div class ="col-lg-9">
+                <img id= "icon" alt= "weather icon"/>
+                <div class="mt-4"></div> 
+                        <li id ="temperature">Temperature</li>
+                        <li id ="humidity">Humidity</li>
+                        <li id ="windSpeed">Wind Speed</li>
+                        <li id ="uvIndex">Uv Index</li>
 
                     </div> 
                 </div>
-            </div>
-
-        </div>
+    
 <!----5 day forecast---->
-        <section class= "container-fluid" id="forecastSection">
-            <h3 class= "font-wight-bold my-4">5-Day Forecast:</h3>
-            <div class= "row text-center" id ="forecastRow"></div>
+    <div class="container">
+        <div class="mt-4 col-md-12">
+            <h3 class= "font-weight-bold my-3 text-center">5-Day Forecast</h3>
+            <div class= "row" id ="forecastRow">
 
         <!----Forecast 1-->
-        <div class= "col-20">
-        <div class= "forecast-card bg- primary text-white mb-4">
+        <div class= "col">
+        <div class= "forecast bg-primary text-white mb-4">
             <h5 id= "date1" class= "date-title font-weight-bold"></h5>
             <img id= "forecastIcon1" alt="Weather Forecast Icon">
-            <p class= "font-weight-bold" id= "temperature1">Temperature: </p>
-            <p class= "font-weight-bold" id= "humidity1">Humidity: </p>
-            <p class= "font-weight-bold" id= "windspeed1">Wind Speed: </p>
+            <li id= "temperature1">Temperature</li>
+            <li id= "humidity1">Humidity</li>
+            <li id= "windspeed1">Wind Speed</li>
         </div>
         </div>
             <!----Forecast 2-->
-        <div class= "col-20">
-            <div class= "forecast-card bg- primary text-white mb-4">
+        <div class="col">
+            <div class= "forecast bg-primary text-white mb-4">
                 <h5 id= "date2" class= "date-title font-weight-bold"></h5>
                 <img id= "forecastIcon2" alt="Weather Forecast Icon">
-                <p class= "font-weight-bold" id= "temperature2">Temperature: </p>
-                <p class= "font-weight-bold" id= "humidity2">Humidity: </p>
-                <p class= "font-weight-bold" id= "windspeed2">Wind Speed: </p>
+                <li id= "temperature2">Temperature</li>
+                <li id= "humidity2">Humidity</li>
+                <li id= "windspeed2">Wind Speed</li>
             </div>
             </div>
             <!----Forecast 3-->
-        <div class= "col-20">
-            <div class= "forecast-card bg- primary text-white mb-4">
+        <div class= "col">
+            <div class= "forecast bg-primary text-white mb-4">
                 <h5  id= "date3" class= "date-title font-weight-bold"></h5>
                 <img id= "forecastIcon3" alt="Weather Forecast Icon">
-                <p class= "font-weight-bold" id= "temperature3">Temperature: </p>
-                <p class= "font-weight-bold" id= "humidity3">Humidity: </p>
-                <p class= "font-weight-bold" id= "windspeed3">Wind Speed: </p>
+                <li id= "temperature3">Temperature</li>
+                <li id= "humidity3">Humidity</li>
+                <li id= "windspeed3">Wind Speed</li>
             </div>
             </div>
             <!----Forecast 4-->
-        <div class= "col-20">
-            <div class= "forecast-card bg- primary text-white mb-4">
+        <div class= "col">
+            <div class= "forecast bg-primary text-white mb-4">
                 <h5 id= "date4" class= "date-title font-weight-bold"></h5>
                 <img id= "forecastIcon4" alt="Weather Forecast Icon">
-                <p class= "font-weight-bold" id= "temperature4">Temperature: </p>
-                <p class= "font-weight-bold" id= "humidity4">Humidity: </p>
-                <p class= "font-weight-bold" id= "windspeed4">Wind Speed: </p>
+                <li id= "temperature4">Temperature</li>
+                <li id= "humidity4">Humidity</li>
+                <li id= "windspeed4">Wind Speed</li>
             </div>
             </div>
             <!----Forecast 5-->
-        <div class= "col-20">
-            <div class= "forecast-card bg- primary text-white mb-4">
+        <div class= "col">
+            <div class= "forecast bg-primary text-white mb-4">
                 <h5 id= "date5" class= "date-title font-weight-bold"></h5>
                 <img id= "forecastIcon5" alt="Weather Forecast Icon">
-                <p class= "font-weight-bold" id= "temperature5">Temperature: </p>
-                <p class= "font-weight-bold" id= "humidity5">Humidity: </p>
-                <p class= "font-weight-bold" id= "windspeed5">Wind Speed: </p>
+                <li id= "temperature5">Temperature</li>
+                <li id= "humidity5">Humidity</li>
+                <li id= "windspeed5">Wind Speed</li>
             </div>
             </div>
+        </div>
 
 
     <script src="./assets/script2.js" ></script>
