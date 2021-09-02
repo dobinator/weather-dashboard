@@ -22,7 +22,7 @@ function findCity(c) {
   }
   console.log(c);
 }
-
+// to get the specific city weather 
 function getWeather(city) {
   var currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
   fetch(currentWeatherURL)
@@ -49,6 +49,8 @@ function getWeather(city) {
     });
 };
 
+
+// UV call 
 function uvIndexValue(lat, lon) {
   var oneCallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${api_key}`;
   fetch(oneCallURL)
@@ -68,6 +70,8 @@ function uvIndexValue(lat, lon) {
       }
     )};
 
+
+// Five day forecast 
 var id = 1;
 console.log(id)
 function fiveDay(city) {
@@ -87,7 +91,7 @@ function fiveDay(city) {
           img.setAttribute ( "src",
             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
           );
-          var temperature = document.getElementById (`temperature${id}`);
+          var temperature = document.getElementById(`temperature${id}`);
           temperature.textContent = today.main.temp + " ℉";
          var humidity = document.getElementById (`humidity${id}`)
          humidity.textContent = today.main.humidity
@@ -99,7 +103,7 @@ function fiveDay(city) {
     });
 }
 
-
+// event listener for the city button
 cityBtn.addEventListener("click", function (e) {
   e.preventDefault();
   if (searchCity.value.trim !== "" || searchCity.value > 0) {
