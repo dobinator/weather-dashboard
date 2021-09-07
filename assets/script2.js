@@ -1,15 +1,33 @@
 //api key for app to work//
 const api_key = "8c13e3d659618767f6b81c58577f6e75";
-var cityBtn = document.getElementById("citySearchbtn");
-var city = "";
-var searchCity = document.getElementById("searchHistory");
-var cityArray = [];
-var temp = document.querySelector("#temperature");
-var humidity = document.querySelector("#humidity");
-var windSpeed = document.querySelector("#windSpeed");
-var uvIndex = document.getElementById("uvIndex");
-var icon = document.querySelector("#icon");
-var forecastIcon = document.getElementById("forecastIcon");
+const cityBtn = document.getElementById("citySearchbtn");
+// current weather variables
+const city = "";
+const searchCity = document.getElementById("searchHistory");
+const cityArray = [];
+const temp = document.querySelector("#temperature");
+const humidity = document.querySelector("#humidity");
+const windSpeed = document.querySelector("#windSpeed");
+const uvIndex = document.getElementById("uvIndex");
+const icon = document.querySelector("#icon");
+const forecastIcon = document.getElementById("forecastIcon");
+const currentCity = document.getElementById("currentCity");
+const lat = data["coord"]["lat"];
+const lon = data["coord"]["lon"];
+// forecast days
+
+
+
+
+
+// JSON storage
+const recentLocations = JSON.parse(localStorage.getItem("recentLocations")) || [];
+
+
+
+
+
+
 
 //search for a city to see if it exists
 function findCity(c) {
@@ -29,6 +47,7 @@ function getWeather(city) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+     currentCity = currentCity.innerHTML = data.name;
       temp = temp.innerHTML =
         "Temperature: " +
         Math.floor((data["main"]["temp"] - 273.15) * 1.8 + 32) +
@@ -41,8 +60,7 @@ function getWeather(city) {
         "src",
         `http://openweathermap.org/img/w/` + data.weather[0].icon + ".png"
       );
-      var lat = data["coord"]["lat"];
-      var lon = data["coord"]["lon"];
+      
 
       uvIndexValue(lat, lon);
       fiveDay(city);
@@ -60,48 +78,59 @@ function uvIndexValue(lat, lon) {
       uvIndex.innerHTML = "UV Index: " + uvI
       if (uvI < 2 ){
         uvIndex.classList.add("lowUv")
-      }else if (uvI > 5){
+      } else if (uvI > 5){
         uvIndex.classList.add("highUv")
-      }else {
+      } else {
         uvIndex.classList.add("mediumUv")
       }
       console.log(data);
      
       }
     )};
+// convert the date to the correct layout
+// function covert(timestamp) {
+// // Months array
+// const months_arr = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'];
+// const date = new Date (timestamp *1000);
+// const year = date.getFullYear();
+// const month = months_arr[date.getMonth()];
+// const day = date.getDate();
+// const convertTime = month + "-" + day + "-" + "-" + year;
+// return convertTime;
+// }
 
 
 // Five day forecast 
-var id = 1;
-console.log(id)
-function fiveDay(city) {
-  var getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
-  fetch(getFiveDay)
-    .then((data) => data.json())
-    .then(function (data) {
-      console.log("data;  ", data);
-      var currentDay = data.list;
-      for (let index = 0; index < currentDay.length; index++) {
-        var today = currentDay[index];
-        console.log("currentDayIndex: ", currentDay[index]);
-        if (today.dt_txt.indexOf("12:00:00") !== -1) {
-          var date = document.getElementById(`date${id}`);
-          date.textContent = today.dt_txt.slice(0, 10);
-          var img = document.getElementById(`forecastIcon${id}`);
-          img.setAttribute ( "src",
-            `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
-          );
-          var temperature = document.getElementById(`temperature${id}`);
-          temperature.textContent = today.main.temp + " ℉";
-         var humidity = document.getElementById (`humidity${id}`)
-         humidity.textContent = today.main.humidity
-          var windSpeed = document.getElementById (`windspeed${id}`)
-           windSpeed.textContent = +(today.wind.speed).toFixed()
-           id++;
-        }
-      }
-    });
-}
+// var id = 1;
+// console.log(id)
+// function fiveDay(city) {
+//   var getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
+//   fetch(getFiveDay)
+//     .then((data) => data.json())
+//     .then(function (data) {
+//       console.log("data;  ", data);
+//       var currentDay = data.list;
+//       for (let index = 0; index < currentDay.length; index++) {
+//         var today = currentDay[index];
+//         console.log("currentDayIndex: ", currentDay[index]);
+//         if (today.dt_txt.indexOf("12:00:00") !== -1) {
+//           var date = document.getElementById(`date${id}`);
+//           date.textContent = today.dt_txt.slice(0, 10);
+//           var img = document.getElementById(`forecastIcon${id}`);
+//           img.setAttribute ( "src",
+//             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
+//           );
+//           var temperature = document.getElementById(`temperature${id}`);
+//           temperature.textContent = today.main.temp + " ℉";
+//          var humidity = document.getElementById (`humidity${id}`)
+//          humidity.textContent = today.main.humidity
+//           var windSpeed = document.getElementById (`windspeed${id}`)
+//            windSpeed.textContent = +(today.wind.speed).toFixed()
+//            id++;
+//         }
+//       }
+//     });
+// }
 
 // event listener for the city button
 cityBtn.addEventListener("click", function (e) {
