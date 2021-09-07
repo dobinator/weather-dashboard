@@ -59,8 +59,8 @@ function getWeather(city) {
         "src",
         `http://openweathermap.org/img/w/` + data.weather[0].icon + ".png"
       );
-      let lat = data["coord"]["lat"];
-      let lon = data["coord"]["lon"];
+      const lat = data["coord"]["lat"];
+      const lon = data["coord"]["lon"];
 
       uvIndexValue(lat, lon);
       fiveDay(city);
@@ -74,11 +74,11 @@ function uvIndexValue(lat, lon) {
   fetch(oneCallURL)
     .then((response) => response.json())
     .then((data) => {
-      const uvI= data.current.uvi
+      const uvI = data.current.uvi
       uvIndex.innerHTML = "UV Index: " + uvI
-      if (uvI < 2 ){
+      if (uvI < 2 ) {
         uvIndex.classList.add("lowUv")
-      } else if (uvI > 5){
+      } else if (uvI > 5) {
         uvIndex.classList.add("highUv")
       } else {
         uvIndex.classList.add("mediumUv")

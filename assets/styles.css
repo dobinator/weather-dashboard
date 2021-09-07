@@ -1,5 +1,5 @@
 
-body{
+body {
     margin: 0;
     /* background-color: #E3E4E0;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -14,13 +14,15 @@ li {
 
 
 
-.lowUv{
+.lowUv {
  color: green;    
 };
-.mediumUv{
+
+.mediumUv {
   color: yellow; 
 };
 
-.highUv{
+
+.highUv {
  color: red;
 }; 
