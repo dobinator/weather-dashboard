@@ -21,7 +21,7 @@ This application utilizes third party API's to create a weather dashboard with f
 
 ### Installation:
 
-open app with HTMl, live server or default browser
+open app with HTML using live server or default browser
 
 ### Built with:
 - HTML
