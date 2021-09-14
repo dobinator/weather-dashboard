@@ -15,17 +15,8 @@ let currentCity = document.getElementById("currentCity");
 
 // forecast days
 
-
-
-
-
 // JSON storage
 let recentLocations = JSON.parse(localStorage.getItem("recentLocations")) || [];
-
-
-
-
-
 
 
 //search for a city to see if it exists
@@ -41,19 +32,17 @@ function findCity(c) {
 }
 // to get the specific city weather 
 function getWeather(city) {
-  const currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
+  const currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${api_key}`;
   fetch(currentWeatherURL)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-     currentCity = currentCity.innerHTML = data.name;
-      temp = temp.innerHTML =
-        "Temperature: " +
-        Math.floor((data["main"]["temp"] - 273.15) * 1.8 + 32) +
-        " ℉";
-      humidity = humidity.innerHTML =
+      currentCity.innerHTML = data.name;
+      temp.innerHTML =
+        "Temperature: " + (data["main"]["temp"]+ "℉");
+      humidity.innerHTML =
         "Humidity: " + (data["main"]["humidity"] + "%");
-      windSpeed = windSpeed.innerHTML =
+      windSpeed.innerHTML =
         "Windspeed: " + (data["wind"]["speed"].toFixed(1) + "MPH");
       icon.setAttribute (
         "src",
@@ -63,7 +52,7 @@ function getWeather(city) {
       const lon = data["coord"]["lon"];
 
       uvIndexValue(lat, lon);
-      fiveDay(city);
+      // fiveDay(city);
     });
 };
 
@@ -101,36 +90,50 @@ function uvIndexValue(lat, lon) {
 
 
 // Five day forecast 
-let id = 1;
-console.log(id)
-function fiveDay(city) {
-  const getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
-  fetch(getFiveDay)
-    .then((data) => data.json())
+// let id = 1;
+// console.log(id)
+// function fiveDay(city) {
+//   const getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
+//   fetch(getFiveDay)
+//     .then((data) => data.json())
+//     .then(function (data) {
+//       console.log(" 5 day data", data);
+//       let currentDay = data.list;
+//       for (let index = 0; index < currentDay.length; index++) {
+//         console.log("currentDayIndex: ", currentDay[index]);
+//         if (today.dt_txt.indexOf("12:00:00") !== -1) {
+//           let date = document.getElementById(`date${id}`);
+//           // date.textContent = today.dt_txt.slice(0, 10);
+//           let img = document.getElementById(`forecastIcon${id}`);
+//           img.setAttribute ( "src",
+//             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
+//           );
+//           let temperature = document.getElementById(`temperature${id}`);
+//             temperature.textContent = today.main.temp + " ℉";
+//           let humidity = document.getElementById (`humidity${id}`)
+//              humidity.textContent = today.main.humidity
+//           let windSpeed = document.getElementById (`windspeed${id}`)
+//               windSpeed.textContent = +(today.wind.speed).toFixed()
+//            id++;
+//         }
+//       }
+//     });
+// }
+
+// Five Day forecast
+
+function FiveDayForecast(city) {
+  fetch(oneCallURL)
+  .then((data) => data.json())
     .then(function (data) {
-      console.log("data;  ", data);
-      let currentDay = data.list;
-      for (let index = 0; index < currentDay.length; index++) {
-        let today = currentDay[index];
-        console.log("currentDayIndex: ", currentDay[index]);
-        if (today.dt_txt.indexOf("12:00:00") !== -1) {
-          let date = document.getElementById(`date${id}`);
-          date.textContent = today.dt_txt.slice(0, 10);
-          let img = document.getElementById(`forecastIcon${id}`);
-          img.setAttribute ( "src",
-            `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
-          );
-          let temperature = document.getElementById(`temperature${id}`);
-            temperature.textContent = today.main.temp + " ℉";
-          let humidity = document.getElementById (`humidity${id}`)
-             humidity.textContent = today.main.humidity
-          let windSpeed = document.getElementById (`windspeed${id}`)
-              windSpeed.textContent = +(today.wind.speed).toFixed()
-           id++;
-        }
-      }
-    });
+      console.log(" 5 day data", data);
+
+      
+    })
 }
+
+
+
 
 // event listener for the city button
 cityBtn.addEventListener("click", function (e) {
