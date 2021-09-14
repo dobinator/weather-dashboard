@@ -18,7 +18,6 @@ let currentCity = document.getElementById("currentCity");
 // JSON storage
 let recentLocations = JSON.parse(localStorage.getItem("recentLocations")) || [];
 
-
 //search for a city to see if it exists
 function findCity(c) {
   for (let i = 0; i < cityArray.length; i++) {
