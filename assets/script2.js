@@ -12,8 +12,10 @@ let uvIndex = document.getElementById("uvIndex");
 let icon = document.querySelector("#icon");
 let forecastIcon = document.getElementById("forecastIcon");
 let currentCity = document.getElementById("currentCity");
+let forecastContainer= document.getElementById("forecastContainer");
+let forecastRow = document.getElementById("forecastRow");
+//FIVE DAY
 
-// forecast days
 
 // JSON storage
 let recentLocations = JSON.parse(localStorage.getItem("recentLocations")) || [];
@@ -51,7 +53,7 @@ function getWeather(city) {
       const lon = data["coord"]["lon"];
 
       uvIndexValue(lat, lon);
-      // fiveDay(city);
+      fiveDayForecast(data);
     });
 };
 
@@ -74,21 +76,22 @@ function uvIndexValue(lat, lon) {
       console.log(data);
      
       }
+     
     )};
 // convert the date to the correct layout
-// function covert(timestamp) {
-// // Months array
-// const months_arr = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'];
-// const date = new Date (timestamp *1000);
-// const year = date.getFullYear();
-// const month = months_arr[date.getMonth()];
-// const day = date.getDate();
-// const convertTime = month + "-" + day + "-" + "-" + year;
-// return convertTime;
-// }
+function covert(timestamp) {
+// Months array
+const months_arr = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'];
+const date = new Date (timestamp *1000);
+const year = date.getFullYear();
+const month = months_arr[date.getMonth()];
+const day = date.getDate();
+const convertTime = month + "-" + day + "-" + "-" + year;
+return convertTime;
+}
 
 
-// Five day forecast 
+
 // let id = 1;
 // console.log(id)
 // function fiveDay(city) {
@@ -115,23 +118,37 @@ function uvIndexValue(lat, lon) {
 //               windSpeed.textContent = +(today.wind.speed).toFixed()
 //            id++;
 //         }
-//       }
+     
 //     });
 // }
 
 // Five Day forecast
 
-function FiveDayForecast(city) {
-  fetch(oneCallURL)
-  .then((data) => data.json())
-    .then(function (data) {
-      console.log(" 5 day data", data);
+// function fiveDayCall(city) {
+//   const fiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${api_key}`
+//   fetch(fiveDay)
+//   .then((data) => data.json())
+//     .then(function (data) {
+//       console.log(" 5 day data", data);
+//       forecastContainer.innerHTML = "";
+//       for (let i = 0; i < 5; i++) {
+//         item = data.daily[i]; 
+//         fiveDayForecast(data);
+//       }      
+//     })
+// }
 
-      
-    })
-}
+//  function fiveDayForecast(data) {
+//   let newCard = document.createElement("div");
+//   let dateH5 = document.createElement("h5"); 
+//   let iconImg = document.createElement ("img");
+//   let tempLi = document.createElement("li");
+//   let humLi = document.createElement("li");
+//   let windLi = document.creatElement("li")
+//   imgImg.setAttribute("src",`https://openweathermap.org/img/wn/${data} `) 
 
 
+//  }
 
 
 // event listener for the city button
