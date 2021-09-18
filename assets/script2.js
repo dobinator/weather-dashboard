@@ -100,9 +100,10 @@ return convertTime;
 //     .then((data) => data.json())
 //     .then(function (data) {
 //       console.log(" 5 day data", data);
-//       let currentDay = data.list;
-//       for (let index = 0; index < currentDay.length; index++) {
-//         console.log("currentDayIndex: ", currentDay[index]);
+//        let today = currentDay[index];
+//        for (let index = 0; index < currentDay.length; index++) {
+//          console.log("currentDayIndex: ", currentDay[index]);
+//          let currentDay = data.list;
 //         if (today.dt_txt.indexOf("12:00:00") !== -1) {
 //           let date = document.getElementById(`date${id}`);
 //           // date.textContent = today.dt_txt.slice(0, 10);
@@ -119,8 +120,8 @@ return convertTime;
 //            id++;
 //         }
      
-//     });
-// }
+//     };
+
 
 // Five Day forecast
 
