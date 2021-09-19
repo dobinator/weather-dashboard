@@ -40,11 +40,11 @@ function getWeather(city) {
       console.log(data);
       currentCity.innerHTML = data.name;
       temp.innerHTML =
-        "Temperature: " + (data["main"]["temp"]+ "℉");
+        "Temperature: " + (data["main"]["temp"].toFixed(1) + "℉");
       humidity.innerHTML =
         "Humidity: " + (data["main"]["humidity"] + "%");
       windSpeed.innerHTML =
-        "Windspeed: " + (data["wind"]["speed"].toFixed(1) + "MPH");
+        "Windspeed: " + (data["wind"]["speed"].toFixed(1) +"MPH");
       icon.setAttribute (
         "src",
         `http://openweathermap.org/img/w/` + data.weather[0].icon + ".png"
@@ -53,7 +53,7 @@ function getWeather(city) {
       const lon = data["coord"]["lon"];
 
       uvIndexValue(lat, lon);
-      fiveDayForecast(data);
+      fiveDay(city);
     });
 };
 
@@ -92,37 +92,38 @@ return convertTime;
 
 
 
-// let id = 1;
-// console.log(id)
-// function fiveDay(city) {
-//   const getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
-//   fetch(getFiveDay)
-//     .then((data) => data.json())
-//     .then(function (data) {
-//       console.log(" 5 day data", data);
-//        let today = currentDay[index];
-//        for (let index = 0; index < currentDay.length; index++) {
-//          console.log("currentDayIndex: ", currentDay[index]);
-//          let currentDay = data.list;
-//         if (today.dt_txt.indexOf("12:00:00") !== -1) {
-//           let date = document.getElementById(`date${id}`);
-//           // date.textContent = today.dt_txt.slice(0, 10);
-//           let img = document.getElementById(`forecastIcon${id}`);
-//           img.setAttribute ( "src",
-//             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
-//           );
-//           let temperature = document.getElementById(`temperature${id}`);
-//             temperature.textContent = today.main.temp + " ℉";
-//           let humidity = document.getElementById (`humidity${id}`)
-//              humidity.textContent = today.main.humidity
-//           let windSpeed = document.getElementById (`windspeed${id}`)
-//               windSpeed.textContent = +(today.wind.speed).toFixed()
-//            id++;
-//         }
-     
-//     };
+var id = 1;
+function fiveDay(city){
+  const getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
+  fetch(getFiveDay)
+    .then((data) => data.json())
+    .then(function (data) {
+      console.log("data;  ", data);
+      let currentDay = data.list;
+      for (let index = 0; index < currentDay.length; index++) {
+        let today = currentDay[index];
+        console.log("currentDayIndex: ", currentDay[index]);
+        if (today.dt_txt.indexOf("09:00:00") !== -1) {
+          let date = document.getElementById(`date${id}`);
+          date.textContent = today.dt_txt.slice(0, 10);
+          let img = document.getElementById(`forecastIcon${id}`);
+          img.setAttribute ( "src",
+            `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
+          );
+          let temperature = document.getElementById(`temperature${id} `);
+          temperature.textContent = today.main.temp + " ℉";
+        
+          let humidity = document.getElementById(`humidity${id}`)
+         humidity.textContent = today.main.humidity;
 
-
+         let windSpeed = document.getElementById(`windspeed${id}`)
+         windSpeed.textContent = +(today.wind.speed).toFixed()
+          id++;
+        }
+      
+      }
+    }
+    )}
 // Five Day forecast
 
 // function fiveDayCall(city) {
