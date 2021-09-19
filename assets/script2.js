@@ -79,26 +79,26 @@ function uvIndexValue(lat, lon) {
      
     )};
 // convert the date to the correct layout
-function covert(timestamp) {
-// Months array
-const months_arr = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'];
-const date = new Date (timestamp *1000);
-const year = date.getFullYear();
-const month = months_arr[date.getMonth()];
-const day = date.getDate();
-const convertTime = month + "-" + day + "-" + "-" + year;
-return convertTime;
-}
+// function covert(timestamp) {
+// // Months array
+// const months_arr = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'];
+// const date = new Date (timestamp *1000);
+// const year = date.getFullYear();
+// const month = months_arr[date.getMonth()];
+// const day = date.getDate();
+// const convertTime = month + "-" + day + "-" + "-" + year;
+// return convertTime;
+// }
 
 
 
-var id = 1;
+let id = 1;
 function fiveDay(city){
   const getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
   fetch(getFiveDay)
     .then((data) => data.json())
     .then(function (data) {
-      console.log("data;  ", data);
+      console.log("5 day data" , data);
       let currentDay = data.list;
       for (let index = 0; index < currentDay.length; index++) {
         let today = currentDay[index];
@@ -110,14 +110,14 @@ function fiveDay(city){
           img.setAttribute ( "src",
             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
           );
-          let temperature = document.getElementById(`temperature${id} `);
-          temperature.textContent = today.main.temp + " ℉";
-        
+          let temperature = document.getElementById(`temperature${id}`);
+            temperature.textContent = today.main.temp + " ℉";
+      
           let humidity = document.getElementById(`humidity${id}`)
-         humidity.textContent = today.main.humidity;
+          humidity.textContent = today.main.humidity;
 
          let windSpeed = document.getElementById(`windspeed${id}`)
-         windSpeed.textContent = +(today.wind.speed).toFixed()
+          windSpeed.textContent = +(today.wind.speed).toFixed()
           id++;
         }
       
