@@ -19,6 +19,8 @@ let forecastRow = document.getElementById("forecastRow");
 
 // JSON storage
 let recentLocations = JSON.parse(localStorage.getItem("recentLocations")) || [];
+console.log(recentLocations)
+
 
 //search for a city to see if it exists
 function findCity(c) {
@@ -78,17 +80,8 @@ function uvIndexValue(lat, lon) {
       }
      
     )};
-// convert the date to the correct layout
-// function covert(timestamp) {
-// // Months array
-// const months_arr = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'];
-// const date = new Date (timestamp *1000);
-// const year = date.getFullYear();
-// const month = months_arr[date.getMonth()];
-// const day = date.getDate();
-// const convertTime = month + "-" + day + "-" + "-" + year;
-// return convertTime;
-// }
+
+
 
 
 
@@ -103,54 +96,34 @@ function fiveDay(city){
       for (let index = 0; index < currentDay.length; index++) {
         let today = currentDay[index];
         console.log("currentDayIndex: ", currentDay[index]);
+        let newDate = new Date(today.dt * 1000);
         if (today.dt_txt.indexOf("09:00:00") !== -1) {
           let date = document.getElementById(`date${id}`);
-          date.textContent = today.dt_txt.slice(0, 10);
+          date.textContent = newDate.toLocaleString(
+            "en-US", 
+            {year: "numeric", month: "long", day: "numeric" }
+          ); 
+
+          // date.textContent = today.dt_txt.slice(0, 10);
           let img = document.getElementById(`forecastIcon${id}`);
           img.setAttribute ( "src",
             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
           );
           let temperature = document.getElementById(`temperature${id}`);
-            temperature.textContent = today.main.temp + " ℉";
+            temperature.textContent = "Temperature:  " + today.main.temp +  " ℉";
       
           let humidity = document.getElementById(`humidity${id}`)
-          humidity.textContent = today.main.humidity;
+          humidity.textContent = "Humidity: " + today.main.humidity;
 
          let windSpeed = document.getElementById(`windspeed${id}`)
-          windSpeed.textContent = +(today.wind.speed).toFixed()
+          windSpeed.textContent = "Windspeed: " + today.wind.speed.toFixed() + " MPH"
           id++;
         }
       
       }
     }
     )}
-// Five Day forecast
 
-// function fiveDayCall(city) {
-//   const fiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${api_key}`
-//   fetch(fiveDay)
-//   .then((data) => data.json())
-//     .then(function (data) {
-//       console.log(" 5 day data", data);
-//       forecastContainer.innerHTML = "";
-//       for (let i = 0; i < 5; i++) {
-//         item = data.daily[i]; 
-//         fiveDayForecast(data);
-//       }      
-//     })
-// }
-
-//  function fiveDayForecast(data) {
-//   let newCard = document.createElement("div");
-//   let dateH5 = document.createElement("h5"); 
-//   let iconImg = document.createElement ("img");
-//   let tempLi = document.createElement("li");
-//   let humLi = document.createElement("li");
-//   let windLi = document.creatElement("li")
-//   imgImg.setAttribute("src",`https://openweathermap.org/img/wn/${data} `) 
-
-
-//  }
 
 
 // event listener for the city button
@@ -158,6 +131,8 @@ cityBtn.addEventListener("click", function (e) {
   e.preventDefault();
   if (searchCity.value.trim !== "" || searchCity.value > 0) {
     let city = searchCity.value; //.trim removes white spaces beginning and end of a string
+    const updatedCities = [...recentLocations, city];
+    localStorage.setItem("recentLocations", JSON.stringify(updatedCities));
     getWeather(city);
     console.log(city);
   }
