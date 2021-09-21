@@ -97,7 +97,7 @@ function fiveDay(city){
         let today = currentDay[index];
         console.log("currentDayIndex: ", currentDay[index]);
         let newDate = new Date(today.dt * 1000);
-        if (today.dt_txt.indexOf("09:00:00") !== -1) {
+        if (today.dt_txt.indexOf("12:00:00") !== -1) {
           let date = document.getElementById(`date${id}`);
           date.textContent = newDate.toLocaleString(
             "en-US", 
@@ -110,7 +110,7 @@ function fiveDay(city){
             `https://openweathermap.org/img/w/` + today.weather[0].icon + ".png"
           );
           let temperature = document.getElementById(`temperature${id}`);
-            temperature.textContent = "Temperature:  " + today.main.temp +  " ℉";
+            temperature.textContent = "Temperature:  " + today.main.temp.toFixed() +  " ℉";
       
           let humidity = document.getElementById(`humidity${id}`)
           humidity.textContent = "Humidity: " + today.main.humidity;

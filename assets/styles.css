@@ -9,20 +9,24 @@ body {
 li {
     font-size: 20px;
     list-style-type: none;
+    
 }
 
 
 
 
 .lowUv {
- color: green;    
+ color:#32cd32; 
+ /* color: #fff;    */
 };
 
 .mediumUv {
-  color: yellow; 
+  color:#ffff31;
+  /* color: #000000;  */
 };
 
 
 .highUv {
- color: red;
+ color: #ff0000;
+ /* color:#fff; */
 }; 
